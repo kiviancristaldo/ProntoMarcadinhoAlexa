@@ -15,6 +15,21 @@ type
   TDataModule1 = class(TDataModule)
     FDConnection1: TFDConnection;
     qrAgenda: TFDQuery;
+    qrProfissionais: TFDQuery;
+    qrClientes: TFDQuery;
+    qrAgendaID: TIntegerField;
+    qrAgendaIDPROFISSIONAL: TIntegerField;
+    qrAgendaDIA: TDateField;
+    qrAgendaHORARIO: TTimeField;
+    qrAgendaIDCLIENTE: TTimeField;
+    qrProfissionaisID: TIntegerField;
+    qrProfissionaisNOME: TStringField;
+    qrProfissionaisSOBRENOME: TStringField;
+    qrProfissionaisHORARIO_MIN_MANHA: TTimeField;
+    qrProfissionaisHORARIO_MAX_MANHA: TTimeField;
+    qrProfissionaisHORAUNITARIA: TTimeField;
+    qrProfissionaisHORARIO_MIN_TARDE: TTimeField;
+    qrProfissionaisHORARIO_MAX_TARDE: TTimeField;
   private
     { Private declarations }
   public
