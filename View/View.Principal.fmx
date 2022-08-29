@@ -1,0 +1,34 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 353
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object btnCadastroDeProfissionais: TButton
+    Size.Width = 160.000000000000000000
+    Size.Height = 116.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'btnCadastroDeProfissionais'
+  end
+  object btnCadastroDeClientes: TButton
+    Position.X = 176.000000000000000000
+    Size.Width = 160.000000000000000000
+    Size.Height = 116.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Text = 'btnCadastroDeProfissionais'
+  end
+  object BtnAgendar: TButton
+    Position.X = 352.000000000000000000
+    Size.Width = 160.000000000000000000
+    Size.Height = 116.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Text = 'btnCadastroDeProfissionais'
+  end
+end
