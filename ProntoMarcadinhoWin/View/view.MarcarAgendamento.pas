@@ -25,6 +25,7 @@ type
     dsAgenda: TDataSource;
     dsProfissionais: TDataSource;
     dsClientes: TDataSource;
+    RadioGroup1: TRadioGroup;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }

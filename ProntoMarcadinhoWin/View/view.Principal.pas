@@ -61,9 +61,15 @@ end;
 
 procedure TfrmPrincipal.Button3Click(Sender: TObject);
 var
-  FControllerDataETurnos:TControllerDataETurnos;
+  ControllerAgendamento:TControllerDataETurnos;
 begin
-   FControllerDataEturnos.Incluir(1);
+   ControllerAgendamento := TControllerDataETurnos.Create;
+   try
+     ControllerAgendamento.AbrirForm(self);
+   finally
+     ControllerAgendamento.Free;
+   end;
+end;
 end;
 
 procedure TfrmPrincipal.Button4Click(Sender: TObject);

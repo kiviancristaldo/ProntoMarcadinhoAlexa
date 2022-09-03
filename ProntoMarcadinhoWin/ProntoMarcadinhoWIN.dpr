@@ -13,7 +13,8 @@ uses
   eCalendario.Component in 'eCalendario\eCalendario.Component.pas' {eCalendario},
   model.Agenda in 'Model\model.Agenda.pas',
   Controller.DataETurnos in 'Controller\Controller.DataETurnos.pas',
-  model.CadastroProfissionais in 'Model\model.CadastroProfissionais.pas';
+  model.CadastroProfissionais in 'Model\model.CadastroProfissionais.pas',
+  view.GerarAgenda in 'View\view.GerarAgenda.pas' {frmGerarAgenda};
 
 {$R *.res}
 
@@ -24,5 +25,6 @@ begin
   Application.CreateForm(Tdados, dados);
   Application.CreateForm(TfrmCadastroClientes, frmCadastroClientes);
   Application.CreateForm(TfrmAgendamento, frmAgendamento);
+  Application.CreateForm(TfrmGerarAgenda, frmGerarAgenda);
   Application.Run;
 end.

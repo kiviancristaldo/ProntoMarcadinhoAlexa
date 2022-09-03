@@ -4,7 +4,7 @@ object dados: Tdados
   Width = 530
   object FDConnection1: TFDConnection
     Params.Strings = (
-      'Database=C:\Projetos\ProntoMarcadinhoAPP\Banco\DADOSPM.FDB'
+      'Database=C:\Projetos\ProntoMarcadinho\Banco\DADOS.FDB'
       'User_Name=SYSDBA'
       'Password=masterkey'
       'DriverID=FB')

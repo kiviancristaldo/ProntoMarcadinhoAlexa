@@ -21,7 +21,6 @@ object frmAgendamento: TfrmAgendamento
     Height = 57
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 648
     object Button1: TButton
       Left = 1
       Top = 1
@@ -75,8 +74,7 @@ object frmAgendamento: TfrmAgendamento
     Height = 517
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 648
-    ExplicitHeight = 401
+    ExplicitTop = 62
     object Label1: TLabel
       Left = 22
       Top = 23
@@ -93,9 +91,9 @@ object frmAgendamento: TfrmAgendamento
     end
     object DBGrid1: TDBGrid
       Left = 1
-      Top = 316
+      Top = 240
       Width = 806
-      Height = 200
+      Height = 276
       Align = alBottom
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
@@ -127,6 +125,17 @@ object frmAgendamento: TfrmAgendamento
       ListField = 'NOME'
       ListSource = dsClientes
       TabOrder = 2
+    end
+    object RadioGroup1: TRadioGroup
+      Left = 22
+      Top = 115
+      Width = 91
+      Height = 105
+      Caption = 'Turno'
+      Items.Strings = (
+        'Manha'
+        'Tarde')
+      TabOrder = 3
     end
   end
   object dsAgenda: TDataSource
