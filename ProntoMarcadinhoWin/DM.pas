@@ -11,11 +11,11 @@ uses
   FireDAC.Comp.Client;
 
 type
-  TDataModule2 = class(TDataModule)
+  Tdados = class(TDataModule)
     FDConnection1: TFDConnection;
     qryProfissionais: TFDQuery;
-    FDQuery2: TFDQuery;
-    FDQuery3: TFDQuery;
+    qryClientes: TFDQuery;
+    qryAgenda: TFDQuery;
     qryProfissionaisID: TIntegerField;
     qryProfissionaisNOME: TStringField;
     qryProfissionaisSOBRENOME: TStringField;
@@ -24,6 +24,26 @@ type
     qryProfissionaisHORAUNITARIA: TTimeField;
     qryProfissionaisHORARIO_MIN_TARDE: TTimeField;
     qryProfissionaisHORARIO_MAX_TARDE: TTimeField;
+    qryClientesID: TIntegerField;
+    qryClientesNOME: TStringField;
+    qryClientesSOBRENOME: TStringField;
+    qryClientesDATANASCIMENTO: TDateField;
+    qryAgendaID: TIntegerField;
+    qryAgendaIDPROFISSIONAL: TIntegerField;
+    qryAgendaDIA: TDateField;
+    qryAgendaHORARIO: TTimeField;
+    qryAgendaIDCLIENTE: TTimeField;
+    qryAux: TFDQuery;
+    qryDataEturnos: TFDQuery;
+    qryDataEturnosID: TIntegerField;
+    qryDataEturnosIDPROFISSIONAL: TIntegerField;
+    qryDataEturnosTURNO: TStringField;
+    qryDataEturnosDIA: TDateField;
+    qryHorarios: TFDQuery;
+    qryHorariosID: TIntegerField;
+    qryHorariosHORARIO: TTimeField;
+    qryHorariosIDCLIENTE: TIntegerField;
+    qryHorariosIDDATAETURNOS: TIntegerField;
   private
     { Private declarations }
   public
@@ -31,7 +51,7 @@ type
   end;
 
 var
-  DataModule2: TDataModule2;
+  dados: Tdados;
 
 implementation
 

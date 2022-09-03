@@ -1,7 +1,7 @@
-object Form2: TForm2
+object frmCadastroProfissionais: TfrmCadastroProfissionais
   Left = 0
   Top = 0
-  Caption = 'Form2'
+  Caption = 'Cadastro de Profissionais'
   ClientHeight = 562
   ClientWidth = 712
   Color = clBtnFace
@@ -20,7 +20,6 @@ object Form2: TForm2
     Height = 57
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 650
     object Button1: TButton
       Left = 1
       Top = 1
@@ -29,9 +28,9 @@ object Form2: TForm2
       Align = alLeft
       Caption = 'Inserir'
       TabOrder = 0
-      ExplicitLeft = 48
-      ExplicitTop = 16
-      ExplicitHeight = 25
+      OnClick = Button1Click
+      ExplicitLeft = -5
+      ExplicitTop = 2
     end
     object Button2: TButton
       Left = 76
@@ -41,9 +40,7 @@ object Form2: TForm2
       Align = alLeft
       Caption = 'Editar'
       TabOrder = 1
-      ExplicitLeft = 129
-      ExplicitTop = 16
-      ExplicitHeight = 25
+      OnClick = Button2Click
     end
     object Button3: TButton
       Left = 151
@@ -53,21 +50,33 @@ object Form2: TForm2
       Align = alLeft
       Caption = 'Cancelar'
       TabOrder = 2
-      ExplicitLeft = 210
-      ExplicitTop = 16
-      ExplicitHeight = 25
+      OnClick = Button3Click
+      ExplicitLeft = 145
+      ExplicitTop = -4
     end
     object Button4: TButton
+      Left = 301
+      Top = 1
+      Width = 75
+      Height = 55
+      Align = alLeft
+      Caption = 'Gravar'
+      TabOrder = 3
+      OnClick = Button4Click
+      ExplicitLeft = 307
+      ExplicitTop = -4
+    end
+    object Button5: TButton
       Left = 226
       Top = 1
       Width = 75
       Height = 55
       Align = alLeft
       Caption = 'Excluir'
-      TabOrder = 3
-      ExplicitLeft = 291
-      ExplicitTop = 16
-      ExplicitHeight = 25
+      TabOrder = 4
+      OnClick = Button5Click
+      ExplicitLeft = 220
+      ExplicitTop = -4
     end
   end
   object Panel2: TPanel
@@ -77,10 +86,7 @@ object Form2: TForm2
     Height = 505
     Align = alClient
     TabOrder = 1
-    ExplicitLeft = 312
-    ExplicitTop = 176
-    ExplicitWidth = 185
-    ExplicitHeight = 41
+    ExplicitTop = 62
     object Label1: TLabel
       Left = 24
       Top = 6
@@ -216,7 +222,7 @@ object Form2: TForm2
     end
   end
   object DataSource1: TDataSource
-    DataSet = DataModule2.qryProfissionais
+    DataSet = dados.qryProfissionais
     Left = 128
     Top = 128
   end

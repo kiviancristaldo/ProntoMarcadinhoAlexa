@@ -5,10 +5,11 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, Vcl.ExtCtrls;
+  Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, Vcl.ExtCtrls, Controller.CadastroProfissionais,
+  Vcl.WinXPickers;
 
 type
-  TForm2 = class(TForm)
+  TfrmCadastroProfissionais = class(TForm)
     Panel1: TPanel;
     Panel2: TPanel;
     Label1: TLabel;
@@ -31,17 +32,62 @@ type
     Button3: TButton;
     Button4: TButton;
     DBGrid1: TDBGrid;
+    Button5: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
   private
     { Private declarations }
+    FOwner: TComponent;
+    FController : TControllerCadastroProfissionais;
   public
     { Public declarations }
+   constructor Create(AOwner: TComponent; var pController:TControllerCadastroProfissionais);
   end;
 
 var
-  Form2: TForm2;
+  frmCadastroProfissionais: TfrmCadastroProfissionais;
 
 implementation
 
 {$R *.dfm}
+
+
+{ TfrmCadastroProfissionais }
+
+procedure TfrmCadastroProfissionais.Button1Click(Sender: TObject);
+begin
+  FController.Incluir;
+end;
+
+procedure TfrmCadastroProfissionais.Button2Click(Sender: TObject);
+begin
+  FController.Editar;
+end;
+
+procedure TfrmCadastroProfissionais.Button3Click(Sender: TObject);
+begin
+  FController.Cancelar;
+end;
+
+procedure TfrmCadastroProfissionais.Button4Click(Sender: TObject);
+begin
+  FController.Gravar;
+end;
+
+procedure TfrmCadastroProfissionais.Button5Click(Sender: TObject);
+begin
+  FController.Excluir;
+end;
+
+constructor TfrmCadastroProfissionais.Create(AOwner: TComponent;
+  var pController: TControllerCadastroProfissionais);
+begin
+  inherited Create(AOwner);
+  FOwner := AOwner;                   //tem que levar em consideração o owner aqui
+  FController := pController;
+end;
 
 end.
