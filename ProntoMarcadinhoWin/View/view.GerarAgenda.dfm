@@ -11,6 +11,8 @@ object frmGerarAgenda: TfrmGerarAgenda
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnClose = FormClose
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -20,24 +22,24 @@ object frmGerarAgenda: TfrmGerarAgenda
     Height = 13
     Caption = 'Profissional'
   end
-  object dbProfissional: TDBLookupComboBox
+  object Button1: TButton
+    Left = 184
+    Top = 52
+    Width = 89
+    Height = 25
+    Caption = 'Gerar Agenda'
+    TabOrder = 0
+    OnClick = Button1Click
+  end
+  object dbProfissionais: TDBLookupComboBox
     Left = 22
-    Top = 42
+    Top = 56
     Width = 145
     Height = 21
     KeyField = 'ID'
     ListField = 'NOME'
     ListSource = DataSource1
-    TabOrder = 0
-  end
-  object Button1: TButton
-    Left = 184
-    Top = 42
-    Width = 89
-    Height = 25
-    Caption = 'Gerar Agenda'
     TabOrder = 1
-    OnClick = Button1Click
   end
   object DataSource1: TDataSource
     DataSet = dados.qryProfissionais

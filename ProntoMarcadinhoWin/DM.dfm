@@ -4,7 +4,7 @@ object dados: Tdados
   Width = 530
   object FDConnection1: TFDConnection
     Params.Strings = (
-      'Database=C:\Projetos\ProntoMarcadinho\Banco\DADOS.FDB'
+      'Database=C:\Projetos\ProntoMarcadinhoAPP\Banco\DADOSPM.FDB'
       'User_Name=SYSDBA'
       'Password=masterkey'
       'DriverID=FB')
@@ -90,19 +90,30 @@ object dados: Tdados
   object qryAgenda: TFDQuery
     Connection = FDConnection1
     SQL.Strings = (
-      'select * from agenda')
+      
+        'SELECT h.id as IDhorario,p.nome AS nomeDOprofissional ,d.TURNO ,' +
+        ' d.DIA ,h.HORARIO, c.NOME AS nomeCLiente, d.id as IDDataETurnos'
+      
+        'FROM horarios h INNER JOIN DATAETURNOS d ON h.IDDATAETURNOS = d.' +
+        'ID'
+      
+        'INNER JOIN PROFISSIONAIS p ON p.ID = d.IDPROFISSIONAL LEFT JOIN ' +
+        'CLIENTE '
+      'c ON c.ID = h.IDCLIENTE WHERE 1=1 ')
     Left = 48
     Top = 216
-    object qryAgendaID: TIntegerField
-      FieldName = 'ID'
-      Origin = 'ID'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    object qryAgendaNOMEDOPROFISSIONAL: TStringField
+      FieldName = 'NOMEDOPROFISSIONAL'
+      Origin = 'NOMEDOPROFISSIONAL'
       Required = True
+      Size = 50
     end
-    object qryAgendaIDPROFISSIONAL: TIntegerField
-      FieldName = 'IDPROFISSIONAL'
-      Origin = 'IDPROFISSIONAL'
+    object qryAgendaTURNO: TStringField
+      FieldName = 'TURNO'
+      Origin = 'TURNO'
       Required = True
+      FixedChar = True
+      Size = 5
     end
     object qryAgendaDIA: TDateField
       FieldName = 'DIA'
@@ -112,13 +123,30 @@ object dados: Tdados
     object qryAgendaHORARIO: TTimeField
       FieldName = 'HORARIO'
       Origin = 'HORARIO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
     end
-    object qryAgendaIDCLIENTE: TTimeField
-      FieldName = 'IDCLIENTE'
-      Origin = 'IDCLIENTE'
+    object qryAgendaNOMECLIENTE: TStringField
+      FieldName = 'NOMECLIENTE'
+      Origin = 'NOMECLIENTE'
+      Required = True
+      Size = 50
+    end
+    object qryAgendaIDHORARIO: TIntegerField
+      FieldName = 'IDHORARIO'
+      Origin = 'ID'
+      Required = True
+    end
+    object qryAgendaIDDATAETURNOS: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'IDDATAETURNOS'
+      Origin = 'ID'
+      ProviderFlags = [pfInKey]
+      ReadOnly = True
     end
   end
   object qryAux: TFDQuery
+    FilterOptions = [foCaseInsensitive]
     Connection = FDConnection1
     Left = 208
     Top = 128

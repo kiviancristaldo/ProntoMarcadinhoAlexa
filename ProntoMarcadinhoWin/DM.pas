@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FB,
   FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client;
+  FireDAC.Comp.Client, VCL.Dialogs;
 
 type
   Tdados = class(TDataModule)
@@ -28,11 +28,6 @@ type
     qryClientesNOME: TStringField;
     qryClientesSOBRENOME: TStringField;
     qryClientesDATANASCIMENTO: TDateField;
-    qryAgendaID: TIntegerField;
-    qryAgendaIDPROFISSIONAL: TIntegerField;
-    qryAgendaDIA: TDateField;
-    qryAgendaHORARIO: TTimeField;
-    qryAgendaIDCLIENTE: TTimeField;
     qryAux: TFDQuery;
     qryDataEturnos: TFDQuery;
     qryDataEturnosID: TIntegerField;
@@ -44,10 +39,17 @@ type
     qryHorariosHORARIO: TTimeField;
     qryHorariosIDCLIENTE: TIntegerField;
     qryHorariosIDDATAETURNOS: TIntegerField;
+    qryAgendaNOMEDOPROFISSIONAL: TStringField;
+    qryAgendaTURNO: TStringField;
+    qryAgendaDIA: TDateField;
+    qryAgendaHORARIO: TTimeField;
+    qryAgendaNOMECLIENTE: TStringField;
+    qryAgendaIDHORARIO: TIntegerField;
+    qryAgendaIDDATAETURNOS: TIntegerField;
   private
     { Private declarations }
   public
-    { Public declarations }
+    function UltimoID(tabela: string): integer;
   end;
 
 var
@@ -58,5 +60,21 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+
+function Tdados.UltimoID(tabela:string):integer;
+begin
+  try
+   qryAux.Close;
+   qryAux.SQL.text := 'SELECT max(id) as id FROM '+tabela;
+   qryAux.Open;
+  except
+   showmessage('Essa tabela nao existe!!');
+  end;
+
+  if qryAux.IsEmpty then
+  Result := 0
+  else
+  Result := qryAux.FieldByName('ID').asInteger;
+end;
 
 end.

@@ -40,16 +40,13 @@ begin
    dados.qryProfissionais.Cancel;
 end;
 
-
 procedure TControllerCadastroProfissionais.Editar;
 begin
-
    dados.qryProfissionais.Edit;
 end;
 
 procedure TControllerCadastroProfissionais.Excluir;
 begin
-
    dados.qryProfissionais.Delete;
 end;
 
@@ -61,6 +58,7 @@ end;
 procedure TControllerCadastroProfissionais.Incluir;
 begin
    dados.qryProfissionais.Append;
+   dados.qryProfissionaisID.AsInteger := dados.UltimoID('PROFISSIONAIS')+1;
 end;
 
 procedure TControllerCadastroProfissionais.MostraDados;

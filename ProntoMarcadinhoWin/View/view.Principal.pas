@@ -69,7 +69,7 @@ begin
    finally
      ControllerAgendamento.Free;
    end;
-end;
+
 end;
 
 procedure TfrmPrincipal.Button4Click(Sender: TObject);

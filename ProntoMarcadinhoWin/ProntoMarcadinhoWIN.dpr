@@ -10,11 +10,10 @@ uses
   Controller.CadastroClientes in 'Controller\Controller.CadastroClientes.pas',
   view.MarcarAgendamento in 'View\view.MarcarAgendamento.pas' {frmAgendamento},
   Controller.Agendamento in 'Controller\Controller.Agendamento.pas',
-  eCalendario.Component in 'eCalendario\eCalendario.Component.pas' {eCalendario},
   model.Agenda in 'Model\model.Agenda.pas',
   Controller.DataETurnos in 'Controller\Controller.DataETurnos.pas',
-  model.CadastroProfissionais in 'Model\model.CadastroProfissionais.pas',
-  view.GerarAgenda in 'View\view.GerarAgenda.pas' {frmGerarAgenda};
+  view.GerarAgenda in 'View\view.GerarAgenda.pas' {frmGerarAgenda},
+  model.CadastroProfissionais in 'Model\model.CadastroProfissionais.pas';
 
 {$R *.res}
 
@@ -23,8 +22,5 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(Tdados, dados);
-  Application.CreateForm(TfrmCadastroClientes, frmCadastroClientes);
-  Application.CreateForm(TfrmAgendamento, frmAgendamento);
-  Application.CreateForm(TfrmGerarAgenda, frmGerarAgenda);
   Application.Run;
 end.

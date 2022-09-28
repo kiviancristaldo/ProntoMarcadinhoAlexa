@@ -27,21 +27,22 @@ type
     DBEdit6: TDBEdit;
     Label7: TLabel;
     DBEdit7: TDBEdit;
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
+    btInserir: TButton;
+    btEditar: TButton;
+    btCancelar: TButton;
+    btGravar: TButton;
     DBGrid1: TDBGrid;
-    Button5: TButton;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
-    procedure Button5Click(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
+    btExcluir: TButton;
+    procedure btInserirClick(Sender: TObject);
+    procedure btEditarClick(Sender: TObject);
+    procedure btCancelarClick(Sender: TObject);
+    procedure btExcluirClick(Sender: TObject);
+    procedure btGravarClick(Sender: TObject);
   private
     { Private declarations }
     FOwner: TComponent;
     FController : TControllerCadastroProfissionais;
+    procedure HabilitarBotoes;
   public
     { Public declarations }
    constructor Create(AOwner: TComponent; var pController:TControllerCadastroProfissionais);
@@ -57,29 +58,43 @@ implementation
 
 { TfrmCadastroProfissionais }
 
-procedure TfrmCadastroProfissionais.Button1Click(Sender: TObject);
+procedure TfrmCadastroProfissionais.btInserirClick(Sender: TObject);
 begin
   FController.Incluir;
+  HabilitarBotoes;
 end;
 
-procedure TfrmCadastroProfissionais.Button2Click(Sender: TObject);
+procedure TfrmCadastroProfissionais.HabilitarBotoes;
+begin
+  BtInserir.Enabled  := (not (DataSource1.DataSet.State in [dsInsert, dsEdit]));
+  BtEditar.Enabled   := (not (DataSource1.DataSet.State in [dsInsert, dsEdit])) and (not DataSource1.DataSet.IsEmpty);
+  BtExcluir.Enabled  := (not (DataSource1.DataSet.State in [dsInsert, dsEdit])) and (not DataSource1.DataSet.IsEmpty);
+  BtCancelar.Enabled := (DataSource1.DataSet.State in [dsInsert, dsEdit]);
+  BtGravar.Enabled   := (DataSource1.DataSet.State in [dsInsert, dsEdit]);
+end;
+
+procedure TfrmCadastroProfissionais.btEditarClick(Sender: TObject);
 begin
   FController.Editar;
+  HabilitarBotoes;
 end;
 
-procedure TfrmCadastroProfissionais.Button3Click(Sender: TObject);
+procedure TfrmCadastroProfissionais.btCancelarClick(Sender: TObject);
 begin
   FController.Cancelar;
+  HabilitarBotoes;
 end;
 
-procedure TfrmCadastroProfissionais.Button4Click(Sender: TObject);
+procedure TfrmCadastroProfissionais.btGravarClick(Sender: TObject);
 begin
   FController.Gravar;
+  HabilitarBotoes;
 end;
 
-procedure TfrmCadastroProfissionais.Button5Click(Sender: TObject);
+procedure TfrmCadastroProfissionais.btExcluirClick(Sender: TObject);
 begin
   FController.Excluir;
+  HabilitarBotoes;
 end;
 
 constructor TfrmCadastroProfissionais.Create(AOwner: TComponent;

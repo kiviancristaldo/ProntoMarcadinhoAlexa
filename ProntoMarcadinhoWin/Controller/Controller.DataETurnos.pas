@@ -7,7 +7,6 @@ model.Agenda;
 
 type TControllerDataETurnos = class
   private
-    function UltimoID(tabela: string): integer;
     procedure IncluirDataETurno(var IDDataEturnos: Integer; pIDProfissional: Integer;pDia:TDateTime;Turno:TTurno);
     procedure IncluirHorariosManha(pProfissional: TProfissionais;
       IDDataEturnos: integer);
@@ -71,13 +70,11 @@ end;
 procedure TControllerDataETurnos.Editar;
 begin
    dados.qryAgenda.Edit;
-
 end;
 
 procedure TControllerDataETurnos.Excluir;
 begin
    dados.qryAgenda.Delete;
-
 end;
 
 procedure TControllerDataETurnos.IncluirHorariosTarde(pProfissional:TProfissionais;IDDataEturnos:integer);
@@ -93,7 +90,7 @@ begin
       for I := 0 to QtdDeConsultas do
       begin
         dados.qryHorarios.append;
-        dados.qryHorariosID.Value := UltimoID('HORARIOS')+1;
+        dados.qryHorariosID.Value := dados.UltimoID('HORARIOS')+1;
         dados.qryHorariosIDDATAETURNOS.AsInteger := IDDataEturnos;
 
         if i = 0 then
@@ -121,7 +118,7 @@ begin
       for I := 0 to QtdDeConsultas do
       begin
         dados.qryHorarios.append;
-        dados.qryHorariosID.Value := UltimoID('HORARIOS')+1;
+        dados.qryHorariosID.Value := dados.UltimoID('HORARIOS')+1;
         dados.qryHorariosIDDATAETURNOS.AsInteger := IDDataEturnos;
 
         if i = 0 then
@@ -149,18 +146,20 @@ begin
 
    for I := 0 to 31 do
    begin
-      IDDataEturnos := UltimoID('DATAETURNOS') + 1;
+
       FProfissional := CriarObjetoProfissional(pIDProfissional);
       Dia := IncDay(Dia);
       if (FProfissional.Horario_MIN_manha <> 0) and (FProfissional.Horario_MAX_manha <> 0) then
       begin
+         IDDataEturnos := dados.UltimoID('DATAETURNOS') + 1;
          IncluirDataETurno(IDDataEturnos,pIDProfissional,Dia,tpManha);
          IncluirHorariosManha(FProfissional,IDDataEturnos)
       end;
       if (FProfissional.Horario_MIN_tarde <> 0) and (FProfissional.Horario_MAX_tarde <> 0) then
       begin
+         IDDataEturnos := dados.UltimoID('DATAETURNOS') + 1;
          IncluirDataETurno(IDDataEturnos,pIDProfissional,Dia,tpTarde);
-         IncluirHorariosManha(FProfissional,IDDataEturnos)
+         IncluirHorariosTarde(FProfissional,IDDataEturnos)
       end;
    end;
    FProfissional.Free;
@@ -183,23 +182,9 @@ end;
 procedure TControllerDataETurnos.Gravar;
 begin
    dados.qryAgenda.Post;
-
-end;
-
-function TControllerDataETurnos.UltimoID(tabela:string):integer;
-begin
-   dados.qryAux.Close;
-   dados.qryAux.SQL.text := 'SELECT max(id) as id FROM '+tabela;
-   dados.qryAux.Open;
-
-   if dados.qryAux.IsEmpty then
-    Result := 0
-   else
-    Result := dados.qryAux.FieldByName('ID').asInteger;
 end;
 
 procedure TControllerDataETurnos.Incluir(pIDProfissional:integer);
-
 begin
    GerarAgendaDosProxTrintaDias(pIDProfissional);
 end;
@@ -207,7 +192,6 @@ end;
 procedure TControllerDataETurnos.MostraDados;
 begin
    dados.qryAgenda.Open;
-
 end;
 
 end.

@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{F6D8FF06-F649-4A76-89F3-5AC31CF4AAF8}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ProntoMarcadinhoWin\ProntoMarcadinhoWIN.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Servidor\ProntoMarcadinhoSrv.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ProntoMarcadinhoWIN">
+        <MSBuild Projects="ProntoMarcadinhoWin\ProntoMarcadinhoWIN.dproj"/>
+    </Target>
+    <Target Name="ProntoMarcadinhoWIN:Clean">
+        <MSBuild Projects="ProntoMarcadinhoWin\ProntoMarcadinhoWIN.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProntoMarcadinhoWIN:Make">
+        <MSBuild Projects="ProntoMarcadinhoWin\ProntoMarcadinhoWIN.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProntoMarcadinhoSrv">
+        <MSBuild Projects="Servidor\ProntoMarcadinhoSrv.dproj"/>
+    </Target>
+    <Target Name="ProntoMarcadinhoSrv:Clean">
+        <MSBuild Projects="Servidor\ProntoMarcadinhoSrv.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProntoMarcadinhoSrv:Make">
+        <MSBuild Projects="Servidor\ProntoMarcadinhoSrv.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ProntoMarcadinhoWIN;ProntoMarcadinhoSrv"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ProntoMarcadinhoWIN:Clean;ProntoMarcadinhoSrv:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ProntoMarcadinhoWIN:Make;ProntoMarcadinhoSrv:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

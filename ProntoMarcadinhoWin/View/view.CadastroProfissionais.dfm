@@ -20,7 +20,7 @@ object frmCadastroProfissionais: TfrmCadastroProfissionais
     Height = 57
     Align = alTop
     TabOrder = 0
-    object Button1: TButton
+    object btInserir: TButton
       Left = 1
       Top = 1
       Width = 75
@@ -28,45 +28,44 @@ object frmCadastroProfissionais: TfrmCadastroProfissionais
       Align = alLeft
       Caption = 'Inserir'
       TabOrder = 0
-      OnClick = Button1Click
+      OnClick = btInserirClick
       ExplicitLeft = -5
-      ExplicitTop = 2
+      ExplicitTop = 3
     end
-    object Button2: TButton
+    object btEditar: TButton
       Left = 76
       Top = 1
       Width = 75
       Height = 55
       Align = alLeft
       Caption = 'Editar'
+      Enabled = False
       TabOrder = 1
-      OnClick = Button2Click
+      OnClick = btEditarClick
     end
-    object Button3: TButton
+    object btCancelar: TButton
       Left = 151
       Top = 1
       Width = 75
       Height = 55
       Align = alLeft
       Caption = 'Cancelar'
+      Enabled = False
       TabOrder = 2
-      OnClick = Button3Click
-      ExplicitLeft = 145
-      ExplicitTop = -4
+      OnClick = btCancelarClick
     end
-    object Button4: TButton
+    object btGravar: TButton
       Left = 301
       Top = 1
       Width = 75
       Height = 55
       Align = alLeft
       Caption = 'Gravar'
+      Enabled = False
       TabOrder = 3
-      OnClick = Button4Click
-      ExplicitLeft = 307
-      ExplicitTop = -4
+      OnClick = btGravarClick
     end
-    object Button5: TButton
+    object btExcluir: TButton
       Left = 226
       Top = 1
       Width = 75
@@ -74,9 +73,7 @@ object frmCadastroProfissionais: TfrmCadastroProfissionais
       Align = alLeft
       Caption = 'Excluir'
       TabOrder = 4
-      OnClick = Button5Click
-      ExplicitLeft = 220
-      ExplicitTop = -4
+      OnClick = btExcluirClick
     end
   end
   object Panel2: TPanel
@@ -86,12 +83,11 @@ object frmCadastroProfissionais: TfrmCadastroProfissionais
     Height = 505
     Align = alClient
     TabOrder = 1
-    ExplicitTop = 62
     object Label1: TLabel
       Left = 24
-      Top = 6
+      Top = 7
       Width = 29
-      Height = 13
+      Height = 12
       Caption = 'NOME'
       FocusControl = DBEdit1
     end

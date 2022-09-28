@@ -10,11 +10,11 @@ uses
 type
   TfrmCadastroClientes = class(TForm)
     Panel1: TPanel;
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
-    Button5: TButton;
+    btInserir: TButton;
+    btEditar: TButton;
+    btCancelar: TButton;
+    btGravar: TButton;
+    btExcluir: TButton;
     Panel2: TPanel;
     DBGrid1: TDBGrid;
     Label1: TLabel;
@@ -26,15 +26,16 @@ type
     DBEdit3: TDBEdit;
     Label4: TLabel;
     DBEdit4: TDBEdit;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
-    procedure Button5Click(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
+    procedure btInserirClick(Sender: TObject);
+    procedure btEditarClick(Sender: TObject);
+    procedure btCancelarClick(Sender: TObject);
+    procedure btExcluirClick(Sender: TObject);
+    procedure btGravarClick(Sender: TObject);
   private
     { Private declarations }
     FOwner:TComponent;
     FController: TControllerCadastroClientes;
+    procedure HabilitarBotoes;
   public
     constructor Create(AOwner: TComponent;
       var pController: TControllerCadastroClientes);
@@ -48,29 +49,43 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmCadastroClientes.Button1Click(Sender: TObject);
+procedure TfrmCadastroClientes.btInserirClick(Sender: TObject);
 begin
   FController.Incluir;
+  HabilitarBotoes;
 end;
 
-procedure TfrmCadastroClientes.Button2Click(Sender: TObject);
+procedure TfrmCadastroClientes.HabilitarBotoes;
+begin
+  BtInserir.Enabled  := (not (DataSource1.DataSet.State in [dsInsert, dsEdit]));
+  BtEditar.Enabled   := (not (DataSource1.DataSet.State in [dsInsert, dsEdit])) and (not DataSource1.DataSet.IsEmpty);
+  BtExcluir.Enabled  := (not (DataSource1.DataSet.State in [dsInsert, dsEdit])) and (not DataSource1.DataSet.IsEmpty);
+  BtCancelar.Enabled := (DataSource1.DataSet.State in [dsInsert, dsEdit]);
+  BtGravar.Enabled   := (DataSource1.DataSet.State in [dsInsert, dsEdit]);
+end;
+
+procedure TfrmCadastroClientes.btEditarClick(Sender: TObject);
 begin
   FController.Editar;
+  HabilitarBotoes;
 end;
 
-procedure TfrmCadastroClientes.Button3Click(Sender: TObject);
+procedure TfrmCadastroClientes.btCancelarClick(Sender: TObject);
 begin
   FController.Cancelar;
+  HabilitarBotoes;
 end;
 
-procedure TfrmCadastroClientes.Button4Click(Sender: TObject);
+procedure TfrmCadastroClientes.btGravarClick(Sender: TObject);
 begin
   FController.Gravar;
+  HabilitarBotoes;
 end;
 
-procedure TfrmCadastroClientes.Button5Click(Sender: TObject);
+procedure TfrmCadastroClientes.btExcluirClick(Sender: TObject);
 begin
   FController.Excluir;
+  HabilitarBotoes;
 end;
 
 constructor TfrmCadastroClientes.Create(AOwner: TComponent;

@@ -60,6 +60,7 @@ end;
 procedure TControllerCadastroClientes.Incluir;
 begin
    dados.qryClientes.Append;
+   dados.qryClientesID.AsInteger := dados.UltimoID('CLIENTE')+1;
 
 end;
 
